@@ -91,3 +91,95 @@ Las Reglas CSS son los bloques principales de un documento de estilos — el blo
   * **Pseudo-elementos:** Selecciona los elementos por su situación en relación a otro elemento, por ejemplo: la primera palabra de cada párrafo, o el contenido que se encuentra justo después de un elemento.
   * **Combinaciones:** No son en sí mismos selectores, sino formas de combinar dos o más selectores de forma práctica para una selección especial. Por ejemplo, se pueden seleccionar párrafos que sean descendientes de divs, o párrafos situados justo después de títulos.
   * **Selectores múltiples:** Tampoco son selectores en sí mismos; podemos agrupar múltiples selectores en la misma regla CSS separados por comas, para aplicarlos a una de las declaraciones o a todos los elementos seleccionados por estos selectores.
+
+  #### Selectores simples
+
+  En nuestro primer artículo sobre selectores estudiaremos los selectores "simples", así llamados porque referencian directamente a uno o más elementos de un documento en función del tipo de elemento(o su class o id).
+
+  #### Selector de elementos (selector de tipos)
+
+  Este selector hacer referencia directamente a un tipo de elemento HTML. Es la manera más sencilla para hacer referencia a todos los elementos de un mismo tipo. Veamos el ejemplo:
+
+  * **Dado el siguiente código HTML:**
+
+  <p>What color do you like?</p>
+  <div>I like blue.</div>
+  <p>I prefer red!</p>
+  Una sencilla hoja de estilos:
+
+  /* All p elements are red */
+  p {
+    color: red;
+  }
+
+  /* All div elements are blue */
+  div {
+    color: blue;
+  }
+
+  #### Selectores de clases
+
+  El selector de clase se forma con un punto, '.', seguido de un nombre de clase. Un nombre de clase puede ser cualquier valor sin espacios usado dentro de un atributo HTML class. Podemos elegir el nombre que deseemos para la clase. Es conveniente saber que en un mismo documento varios elementos pueden compartir el mismo valor de clase y que un elemento puede tener varios nombres de clases separados por un espacio en blanco. Veamos un rápido ejemplo:
+
+  * **Sea el siguiente código HTML:**
+
+  <ul>
+    <li class="first done">Create an HTML document</li>
+    <li class="second done">Create a CSS style sheet</li>
+    <li class="third">Link them all together</li>
+  </ul>
+  
+  * **Y un sencillo documento de estilos:**
+
+  /* The element with the class "first" is bolded */
+  .first {
+    font-weight: bold;
+  }
+
+  /* All the elements with the class "done" are strike through */
+  .done {
+    text-decoration: line-through;
+  }
+
+  #### Selectores ID
+
+  El selector ID está formdo por una almohadilla (#), seguida del nombre ID de determinado elemento. Cualquier elemento puede tener un único nombre ID fijado con el atributo id. Podemos usar cualquier nombre de nuestra elección para el ID. Es la forma más efectiva de selecionar un solo elemento.
+
+  Important: El nombre ID debe ser único en el documento. No podemo saber que sucedera con IDs duplicados, en algunos navegadores solo contará la primera ocurrencia, las demás serán ignoradas.
+
+  * **Veamos un rápido ejemplo — dado el código HTML:**
+
+  <p id="polite"> — "Good morning."</p>
+  <p id="rude"> — "Go away!"</p>
+  Y un sencillo documento de estilos:
+
+  #polite {
+    font-family: cursive;
+  }
+
+  #rude {
+    font-family: monospace;
+    text-transform: uppercase;
+  }
+
+  #### Selector Universal
+
+  El selector universal (*) es el comodín. Nos permite seleccionar todos los elementos de una página, se suele usar en combinación con otros selectores (ver Combinators más adelante).
+
+  Importante: Cuidado al utilizar el selector universal. Al afectar a todos los elementos, usarlo en grandes páginas web grandes puede afectar al rendimiento, ralentizando el tiempo de carga de las páginas más de lo esperado. No tendremos necesidad de usarlo muy a menudo.
+
+   * **Ahora como ejemplo; dado un código HTML:**
+
+  <div>
+    <p>I think the containing box just needed
+    a <strong>border</strong> or <em>something</em>,
+    but this is getting <strong>out of hand</strong>!</p>
+  </div>
+  
+  * **Y su correspondiente hoja de estilos:**
+
+  * {
+    padding: 5px;
+    border: 1px solid black;
+    background: rgba(255,0,0,0.25)
+  }
