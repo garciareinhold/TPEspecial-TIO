@@ -373,4 +373,131 @@ Las Reglas CSS son los bloques principales de un documento de estilos — el blo
     content: '⤴';
   }
 
+  #### Combinaciones y selectores múltiples
+
+  * **Combinaciones**
+
+  El uso de un selector cada vez puede ser útil, pero ineficiente en algunas situaciones. Los selectores CSS pueden ser más prácticos cuando los combinamos para refinar las selecciones. En CSS tenemos varias maneras para seleccionar unos elementos respecto a su relación con otros. Estas relaciones se expresan mediante combinaciones de la siguiente forma (A y B representan cualquiera de los selectores vistos hasta ahora):
+
+  Combinación	Selecciona
+  A, B	Cualquier elemento seleccionado por A y/o B (ver Varios selectores en una regla, más adelante).
+  A B	Cualquier elemento seleccionado por B descendiente de un elemento seleccionado por A (o sea, un hijo, un hijo de otro hijo, etc.).
+  A > B	Cualquier elemento seleccionado por B y es hijo directo de un elemento seleccionado por A.
+  A + B	
+  Cualquier elemento seleccionado por B y es el siguiente hermano de un elemento seleccionado por A (o sea, el siguiente hijo del mismo padre).
+
+  A ~ B	Cualquier elemento seleccionado por B y es uno de los siguientes hermanos del elemento seleccionado por A (uno de los siguientes hermanos del mismo padre).
+  Ejemplo de combinaciones
+  Veamos un ejemplo de todo esto actuando a la vez:
+
+<table lang="en-US" class="with-currency">
+<thead>
+    <tr>
+    <th scope="col">Product</th>
+    <th scope="col">Qty.</th>
+    <th scope="col">Price</th>
+    </tr>
+</thead>
+<tfoot>
+    <tr>
+    <th colspan="2" scope="row">Total:</th>
+    <td>148.55</td>
+    </tr>
+</tfoot>
+<tbody>
+    <tr>
+    <td>Lawnchair</td>
+    <td>1</td>
+    <td>137.00</td>
+    </tr>
+    <tr>
+    <td>Marshmallow rice bar</td>
+    <td>2</td>
+    <td>1.10</td>
+    </tr>
+    <tr>
+    <td>Book</td>
+    <td>1</td>
+    <td>10.45</td>
+    </tr>
+</tbody>
+</table>
+  Y utilicemos la siguiente hoja de estilos:
+
+  /* Basic table setup */
+  table {
+    font: 1em sans-serif;
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+  /* All <td>s within a <table> and all <th>s within a <table>
+    Comma is not a combinator, it just allows you to target
+    several selectors with the same CSS ruleset */
+  table td, table th {
+    border : 1px solid black;
+    padding: 0.5em 0.5em 0.4em;
+  }
+
+    /* All <th>s within <thead>s that are within <table>s */
+    table thead th {
+    color: white;
+    background: black;
+    }
+
+    /* All <td>s preceded by another <td>,
+    within a <tbody>, within a <table> */
+    table tbody td + td {
+    text-align: center;
+    }
+
+    /* All <td>s that are a last child,
+    within a <tbody>, within a <table> */
+    table tbody td:last-child {
+    text-align: right
+    }
+
+    /* All <th>s, within a <tfoot>s, within a <table> */
+    table tfoot th {
+    text-align: right;
+    border-top-width: 5px;
+    border-left: none;
+    border-bottom: none;
+    }
+
+    /* All <td>s preceded by a <th>, within a <table> */
+    table th + td {
+    text-align: right;
+    border-top-width: 5px;
+    color: white;
+    background: black;
+    }
+
+    /* All pseudo-elements "before" <td>s that are a last child,
+    appearing within elements with a class of "with-currency" that
+    also have an attribute "lang" with the value "en-US" */
+    .with-currency[lang="en-US"] td:last-child::before {
+    content: '$';
+    }
+
+    /* All pseudo-elements "after" <td>s that are a last child,
+    appearing within elements with the class "with-currency" that
+    also have an attribute "lang" with the value "fr" */
+    .with-currency[lang="fr"] td:last-child::after {
+    content: ' €';
+    }
+
+   #### Varios selectores en una regla
+
+  Hemos ya visto varios ejemplos, pero vamos a dar un par de ejemplos para mayor claridad. Se pueden escribir varios selectores separados por comas para aplicar la misma regla a varios elementos seleccionados a la vez. Ej.:
+
+  p, li {
+    font-size: 1.6em;
+  }
+  o también:
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: helvetica, 'sans serif';
+  }
+
  
