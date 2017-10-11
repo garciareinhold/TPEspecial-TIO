@@ -45,3 +45,29 @@ Las Reglas CSS son los bloques principales de un documento de estilos — el blo
   - El contenido de la regla-@ @media se aplicará solo si el dispositivo que ejecuta el navegador cumple la condición expresada.
   - El contenido de la regla-@ @supports se aplicará solo si el navegador soporta la característica mencionada.
   - El contenido de la regla-@ @document se aplicará solo si la página actual cumple ciertas condiciones.
+
+  ### Buenas Practicas en CSS
+
+  Como podemos comprobar, la sintaxis CSS no es difícil de escribir: podemos escribir reglas y si cometemos errores simplemente serán ignoradas. Pero, aunque funcionen, hay algunas buenas prácticas que debemos conocer para hacer el código CSS más fácil de usar y de mantener.
+
+  #### Espaciado
+
+  El espacio en blanco se refiere a la barra espaciadora, tabulador o cambio de línea. Podemos añadir espacio en blanco para hacer más 'legibles' nuestros documentos de estilo.
+
+  Al igual que en HTML, el navegador suele ignorar la mayoría del espacio en blanco en nuestro CSS; mucho espacio en blanco está ahí solo como ayuda a la lectura. En el siguiente ejemplo vemos que cada declaración (y de inicio/fin de regla) está en una línea diferente — esta es sin duda una buena forma de escribir CSS, ya que lo hace fácil de entender y de mantener:
+
+![Alternative Text!](/images/css-sintax-4.png )
+
+  La apariencia del código es una preferencia personal, aunque cuando se trabaja en equipo, normalmente cada equipo tiene su propia guía de estilo que indica las convenciones a seguir.
+
+  #### Comentando el código
+
+  Al igual que en HTML, se aconseja incluir comentarios en el CSS para ayudar a entender el funcionamiento del código al tiempo de haberlo programado, además de ayudar a otros a entenderlo. Los comentarios son prácticos cuando se está probando ciertas partes del código, por ejemplo para averiguar que parte del código está causando el error encontrado.
+
+  Los comentarios en CSS comienzan con /* y acaban con */.
+
+  #### Abreviadas
+
+  Algunas propiedades como: font, background, padding, border, y margin se llaman propiedades abreviadas — permiten establecer varios valores a la vez en una sola línea, ahorrando tiempo y haciendo el código más limpio.
+
+  Ejemplo: padding: 10px 15px 15px 5px;
