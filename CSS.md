@@ -183,3 +183,84 @@ Las Reglas CSS son los bloques principales de un documento de estilos — el blo
     border: 1px solid black;
     background: rgba(255,0,0,0.25)
   }
+
+  #### Selectores de atributos
+   
+  Los selectores de atributos realiza la selección de los elementos afectados por la declaración en función de los attributes y sus valores. Su sintaxis consiste en la inclusión del nombre del atributo entre corchetes seguido opcionalmente de la condición respecto del valor del atributo. Los selectores de atributos se dividen en dos tipos dependiendo de la forma en que seleccionan los valores del atributo: Selectores de atributo de presencia y valor y selectores de atributo de valor textual.
+
+  * **Selectores de presencia y valor**
+
+  Estos selectores de atributos afectarán a los elementos cuyo valor coincida exactamente con el valor del atributo especificado:
+
+  [attr] : Este selector 'seleccionará' todos los elementos que contengan el atributo attr, sin importar el valor que tenga.
+  [attr=val] : Este, seleccionará los elementos con el atributo attr, pero solo aquello cuyo valor coincida con val.
+  [attr~=val]: Este selector afectará a los elementos con el atributo attr, pero solo si el valor val está contenido en la lista de valores (separados por espacios) incluidos en el valor de attr, por ejemplo una de las clases contenida en una lista de clases (separadas por espacios).
+  Veamos como ejemplo el siguiente fragmento de código HTML:
+
+  Ingredients for my recipe: <i lang="fr-FR">Poulet basquaise</i>
+  <ul>
+    <li data-quantity="1kg" data-vegetable>Tomatoes</li>
+    <li data-quantity="3" data-vegetable>Onions</li>
+    <li data-quantity="3" data-vegetable>Garlic</li>
+    <li data-quantity="700g" data-vegetable="not spicy like chili">Red pepper</li>
+    <li data-quantity="2kg" data-meat>Chicken</li>
+    <li data-quantity="optional 150g" data-meat>Bacon bits</li>
+    <li data-quantity="optional 10ml" data-vegetable="liquid">Olive oil</li>
+    <li data-quantity="25cl" data-vegetable="liquid">White wine</li>
+  </ul>
+  Y un sencillo documento de estilos CSS:
+
+  /* All elements with the attribute "data-vegetable"
+     are given green text */
+  [data-vegetable] {
+    color: green;
+  }
+
+  /* All elements with the attribute "data-vegetable"
+     with the exact value "liquid" are given a golden
+     background color */
+  [data-vegetable="liquid"] {
+    background-color: goldenrod;
+  }
+
+  /* All elements with the attribute "data-vegetable",
+     containing the value "spicy", even among others,
+     are given a red text color */
+  [data-vegetable~="spicy"] {
+    color: red;
+  }
+
+  * **Selector de atributos por valor textual**
+
+  También conocidos como "RegExp-like selectors", pues proporcionan una forma de selección similar a las expresiones normales regular expression (aunque siendo estrictos, estos selectores no son verdaderas expresiones normales):
+
+  [attr|=val] : Este selector elegirá todos los elementos con el atributo attr cuyo valor sea exactamente val o empieza por val- (nota: el guion no es un error, se usa para manejar códigos de lenguaje de programación).
+
+  [attr^=val] : Seleccionará todos los elementos cuyo atributo attr comienza por el valor val.
+  [attr$=val] : Este selector elegirá todos los elementos cuyo atributo attr termina por el valor val.
+  [attr*=val] : Este seleccionará todos los elementos cuyo atributo attr contiene la cadena val (al contrario que [attr~=val], este selector no considera los espacios como separador de valores sino como parte del valor del atributo).
+  Continuemos con el ejemplo previo y añadámosle las siguientes reglas CSS:
+
+  /* Classic usage for language selection */
+  [lang|=fr] {
+    font-weight: bold;
+  }
+
+  /* All elements with the attribute "data-quantity", for which
+     the value starts with "optional" */
+  [data-quantity^="optional"] {
+    opacity: 0.5;
+  }
+
+  /* All elements with the attribute "data-quantity", for which
+     the value ends with "kg" */
+  [data-quantity$="kg"] {
+    font-weight: bold;
+  }
+
+  /* All elements with the attribute "data-vegetable" containing
+     the value "not spicy" are turned back to green */
+  [data-vegetable*="not spicy"] {
+    color: green;
+  }
+ 
