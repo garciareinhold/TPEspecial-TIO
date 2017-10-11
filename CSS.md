@@ -71,3 +71,23 @@ Las Reglas CSS son los bloques principales de un documento de estilos — el blo
   Algunas propiedades como: font, background, padding, border, y margin se llaman propiedades abreviadas — permiten establecer varios valores a la vez en una sola línea, ahorrando tiempo y haciendo el código más limpio.
 
   Ejemplo: padding: 10px 15px 15px 5px;
+
+  #### Selectores en CSS
+
+  En CSS, los selectores se usan para elegir los elementos HTML que queremos estilizar de nuestra web. Disponemos de gran variedad de selectores CSS, que proporcionan mucha precisión para seleccionar el elemento deseado. En los siguientes artículos veremos los distintos tipos con más detalle y su funcionamiento.
+
+  #### Selectores básicos
+
+  En el último artículo vimos Sintaxis y terminología CSS. Resumiendo, los selectores forman parte de las reglas CSS y van justo antes de los bloques declarativos.
+
+  ![Muestra selectores](/images/css-sintax-5.png "CSS Sintax")
+
+  #### Tipos de selectores
+  Podemos dividir los selectores en las siguientes categorías:
+
+  * **Selectores simples:** Seleccionan los elementos por el nombre del tipo de elemento, class, o su id.
+  * **Selectores de atributos:** Seleccionan los elementos por los valores de sus atributos.
+  * **Pseudo-clases:** Seleccionan los elementos por el estado en que se encuentran, cómo haber aparecido al pasar el ratón, o el tic deshabilitado o seleccionado, o por ser el primer hijo de su padre en el árbol DOM.
+  * **Pseudo-elementos:** Selecciona los elementos por su situación en relación a otro elemento, por ejemplo: la primera palabra de cada párrafo, o el contenido que se encuentra justo después de un elemento.
+  * **Combinaciones:** No son en sí mismos selectores, sino formas de combinar dos o más selectores de forma práctica para una selección especial. Por ejemplo, se pueden seleccionar párrafos que sean descendientes de divs, o párrafos situados justo después de títulos.
+  * **Selectores múltiples:** Tampoco son selectores en sí mismos; podemos agrupar múltiples selectores en la misma regla CSS separados por comas, para aplicarlos a una de las declaraciones o a todos los elementos seleccionados por estos selectores.
