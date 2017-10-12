@@ -48,6 +48,17 @@ Las Reglas CSS son los bloques principales de un documento de estilos — el blo
   - El contenido de la regla-@ @supports se aplicará solo si el navegador soporta la característica mencionada.
   - El contenido de la regla-@ @document se aplicará solo si la página actual cumple ciertas condiciones.
 
+ * **Ejemplo de sintaxis:**
+
+    @media (min-width: 801px) {
+      body {
+        margin: 0 auto;
+        width: 800px;
+      }
+    }
+  
+  Esta regla anidada solo se aplicará cuando el ancho de la página sea superior a 800 pixels.
+
   ### Buenas Practicas en CSS
 
   Como podemos comprobar, la sintaxis CSS no es difícil de escribir: podemos escribir reglas y si cometemos errores simplemente serán ignoradas. Pero, aunque funcionen, hay algunas buenas prácticas que debemos conocer para hacer el código CSS más fácil de usar y de mantener.
