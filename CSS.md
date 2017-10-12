@@ -80,7 +80,7 @@ Las Reglas CSS son los bloques principales de un documento de estilos — el blo
 
   En el último artículo vimos Sintaxis y terminología CSS. Resumiendo, los selectores forman parte de las reglas CSS y van justo antes de los bloques declarativos.
 
-  ![Muestra selectores](/images/css-sintax-5.png "CSS Sintax")
+  ![Muestra selectores](/images/css-syntax-5.png "CSS Sintax")
 
   #### Tipos de selectores
   Podemos dividir los selectores en las siguientes categorías:
@@ -128,7 +128,7 @@ Las Reglas CSS son los bloques principales de un documento de estilos — el blo
     <li class="second done">Create a CSS style sheet</li>
     <li class="third">Link them all together</li>
   </ul>
-  
+
   * **Y un sencillo documento de estilos:**
 
   /* The element with the class "first" is bolded */
@@ -175,7 +175,7 @@ Las Reglas CSS son los bloques principales de un documento de estilos — el blo
     a <strong>border</strong> or <em>something</em>,
     but this is getting <strong>out of hand</strong>!</p>
   </div>
-  
+
   * **Y su correspondiente hoja de estilos:**
 
   * {
@@ -185,7 +185,7 @@ Las Reglas CSS son los bloques principales de un documento de estilos — el blo
   }
 
   #### Selectores de atributos
-   
+
   Los selectores de atributos realiza la selección de los elementos afectados por la declaración en función de los attributes y sus valores. Su sintaxis consiste en la inclusión del nombre del atributo entre corchetes seguido opcionalmente de la condición respecto del valor del atributo. Los selectores de atributos se dividen en dos tipos dependiendo de la forma en que seleccionan los valores del atributo: Selectores de atributo de presencia y valor y selectores de atributo de valor textual.
 
   * **Selectores de presencia y valor**
@@ -318,7 +318,7 @@ Las Reglas CSS son los bloques principales de un documento de estilos — el blo
   Por ahora, veamos un ejemplo de cómo usarlas. Primero, un fragmento de HTML:
 
   <a href="https://developer.mozilla.org/" target="_blank">Mozilla Developer Network</a>
-  
+
   * **Y las reglas CSS:**
 
   /* These styles will style our link
@@ -383,7 +383,7 @@ Las Reglas CSS son los bloques principales de un documento de estilos — el blo
   A, B	Cualquier elemento seleccionado por A y/o B (ver Varios selectores en una regla, más adelante).
   A B	Cualquier elemento seleccionado por B descendiente de un elemento seleccionado por A (o sea, un hijo, un hijo de otro hijo, etc.).
   A > B	Cualquier elemento seleccionado por B y es hijo directo de un elemento seleccionado por A.
-  A + B	
+  A + B
   Cualquier elemento seleccionado por B y es el siguiente hermano de un elemento seleccionado por A (o sea, el siguiente hijo del mismo padre).
 
   A ~ B	Cualquier elemento seleccionado por B y es uno de los siguientes hermanos del elemento seleccionado por A (uno de los siguientes hermanos del mismo padre).
@@ -500,4 +500,90 @@ Las Reglas CSS son los bloques principales de un documento de estilos — el blo
     font-family: helvetica, 'sans serif';
   }
 
- 
+  ## Tercera Parte
+
+##### En la parte anterior hemos hablado de los distintos selectores CSS. Podemos encontrar varios selectores de reglas CSS afectando al mismo elemento, en estos casos, ¿Qué regla será la que finalmente se aplicará al elemento? Esto está regulado por un mecanismo llamado Cascada; también está relacionado con la Herencia (unos elementos toman "heredan" valores de las propiedades de sus padres, pero otros no). En este artículo definiremos el concepto de cascada, especificidad e importancia y cómo se heredan las propiedades de distintas reglas.
+
+Podemos dar estilo a un elemento desde distintos sitios que pueden interactuar de forma compleja. Esta interacción compleja hace potente a CSS, pero también puede hacerlo confuso y dificil de depurar. Este artículo tratará de clarificar algo esta complejidad; es normal que no lo comprendamos de manera inmediata — esta es una de las partes más duras de entender de la teoría de CSS. La idea es proporcionar un primer acercamiento y ofrecer una guía para futuras consultas sobre cascada y herencia.
+
+### La cascada
+
+CSS (Cascading Style Sheets) ya nos indica que cascada es un concepto importante. A su nivel más básico indica que el orden de las reglas CSS importa, pero es algo más que eso. Que prevalezcan unos selectores sobre otros en la cascada depende de tres factores (en orden de importancia — los primeros prevalecen sobre los últimos):
+
+1. Importancia
+2. Especificidad
+3. Orden del codigo
+
+#### Importancia
+
+En CSS, hay un trozo de sintaxis que podemos usar para asegurarnos que una determinada regla siempre "gane" sobre todas las demás: !important.
+
+Veamoslo en un ejemplo:
+
+![Alternative text](/images/css-syntax-6.png "CSS Sintax")
+
+Que produce el siguiente resultado
+
+![Alternative text](/images/css-syntax-7.png "CSS Sintax")
+
+Vemos que ha pasado
+
+1. Vemos que se han aplicado los valores de color y padding, pero no el de background-color ¿Porqué? En realidad deberían haberse aplicado las tres pues las reglas declaradas más tarde normalmente prevalecen sobre las anteriores.
+2. Sin embargo, ganan las reglas anteriores, pues los selectores de ID/clase son más específicos que los selectores de elemento (lo veremos en la siguiente sección).
+3. Ambos elementos pertenecen a la class better, pero el 2do tiene además la id winning. Las IDs son más específicas que las clases (solo podemos tener un elemento para cada ID en una página, pero podemos tener varios elementos de la misma clase — los selectores ID son muy específicos en aquello que seleccionan), el fondo de color rojo y el borde de 1px negro se deberían aplicar al segundo elemento, y el primer elemento tomará el fondo gris, sin borde, como indica la clase.
+4. El 2do elemento toma el fondo rojo, pero no el borde. ¿Porqué? La declaración !important de la segunda regla — declarada después de (border: none) hará que esta declaración prevalezca sobre el valor del borde de la regla anterior, incluso aunque ID tenga una especificidad mayor.
+
+Es útil saber que !important existe para poder reconocerlo en el código escrito por otros, PERO, no debemos usarlo a menos que sea estrictamente necesario. Una de estas ocasiones la encontramos cuando estamos trabajando un CMS y no podemos editar los módulos principales de CSS, y queremos sobrescribir un estilo que no puede sobrescribirse de ningún otro modo. NO lo usaremos si lo podemos evitar. Pues !important cambia la forma de trabajo de la cascada, y puede causar problemas de dificil solución en el depurado de CSS, especialmente en CSS grandes.
+
+Es útil conocer que la importancia de una declaración CSS depende de los estilos que son especificados en la misma — los usuarios pueden establecer estilos propios que prevalezcan sobre los del desarrollador. Si, por ejemplo, usuarios disminuidos visuales quisieran usar un tamaño de fuente el doble de lo normal en todas las páginas para facilitar su lectura.
+
+De existir conflicto, las declaraciones se aplicarán en el siguiente orden, donde las últimas prevalecen sobre las primeras:
+
+1. Declaraciones en el documento de estilos del usuario (como los estilos por defecto del navegador, usados cuando no hay otros estilos fijados)
+2. Declaraciones normales en el documento de estilos del usuario (establecidos por el propio usuario)
+3. Declaraciones normales en el documento de estilos del autor (los estilos establcidos por nosotros, los desarrolladores web)
+4. eclaraciones !Important en el documento de estilos del autor
+5. Declaraciones !Important en el documento de estilos del usuario
+
+Tiene sentido que el documento de estilos del desarrollador prevalezca sobre el del usuario, pues así se puede mantener el diseño establecido, pero en determinadas ocasiones los usuarios pueden tener buenas razones para sobrescribir los estilos del desarrollador como ya se ha mencionado anteriormente — esto se consigue usado la declaración !Important en sus reglas.
+
+#### Especificidad
+
+La **Especificidad** es en sí una medida de cómo de específico es un selector — cuantos elementos puede seleccionar. Como hemos mostrado en el ejemplo anterior, los selectores de elementos son poco específicos. Los selectores de clase son más específicos, por lo que prevalecen sobre los selectores de elementos. Los selectores ID son todavía más específicos, por lo tanto ganan frente a los de clase. La única forma de vencer a los selectores ID es usando la declaración !important.
+
+La especificidad que tiene un selector se mide mediante 4 valores (o componentes) diferentes, podemos pensar en ellos como en 4 columnas de unidades de millar, centenas, decenas y unidades:
+
+1. Unidades de millar: Puntúa 1 en esta columna si la declaración está dentro de un atributo style (como las declaraciones que no tienen selectores, que su especificidad es siempre 1000). Sino puntúa 0.
+2. Centenas: Puntúa 1 en esta columna por cada selector ID contenido en el selector.
+3. Decenas: Puntúa 1 en esta columna para cada selector de clase, selector de atributo o de pseudo-clase contenidos en el selector.
+4. Unidades: Puntúa 1 en esta columna por cada selector de elemento o pseudo-elemento contenidos en el selector
+
+La siguiente tabla muestra algunos ejemplos sueltos para meternos en tarea. Intentemos comprenderlos y entender porqué tienen la especificidad que se les ha atribuido.
+
+![Alternative text](/images/css-syntax-8.png "CSS Sintax")
+
+#### Orden del código
+
+Orden del código
+Como hemos mencionado, si varios selectores competidores tienen la misma importancia y especificidad, el tercer factor que interviene para decidir qué regla vence es el orden del código — las últimas reglas prevalecen sobre las primeras.
+
+#### Una nota en la combinación de reglas
+
+Cuando estudiamos la teoría sobre la cascada, y el porqué unos estilos se aplican y otros no, es que esto ocurre a nivel de las propiedades — unas propiedades prevalecen sobre otras, pero no reglas enteras prevaleciendo sobre otras reglas. Cuando varias reglas CSS apuntan al mismo elemento, todas se aplican sobre él. Solo después de esto se evalúan los conflictos entre las propiedades para saber qué estilos prevalecerán sobre los otros.
+
+### Herencia
+
+La **herencia** en CSS es la última pieza que necesitamos conocer para tener la información completa y comprender qué estilo se aplicará a un elemento. La idea es que unos elementos se heredarán por los elementos hijos, y otros no.
+
+* Por ejemplo, tiene sentido que font-family y color sean heredadas, pues nos facilita establecer un ancho de fuente básico aplicando una familia de fuentes al elemento ; después podemos reemplazar las fuentes de elementos individuales si es necesario. Sería realmente molesto tener que establecer la fuente base para cada elemento por separado.
+* Otro ejemplo: tiene sentido que margin, padding, border, y background-image NO se hereden. Imaginemos el lio de formato/estilo que ocurriría si aplicamos estas propiedades en un elemento y fuera heredado por todos y cada uno de sus hijos, y después tener que "desaplicarlas" a todos los elementos también.
+
+Las propiedades que se heredan por defecto y las que no, viene marcado en gran medida por el sentido común. Pero para estar seguros podemos consultar la Referencia CSS — cada propiedad viene en una página que comienza con una tabla resumen que incluye diversos detalles sobre cada elemento, incluyendo si se hereda o no.
+
+##### Control de la herencia
+
+CSS dispone de tres valores especiales para manejar las herencias:
+
+* inherit : Este valor establece el valor de la propiedad de un elemento seleccionado en el mismo que su elemento padre.
+* initial : Este valor establece el valor de la propiedad de un elemento seleccionado en el valor por defecto que establece la hoja de estilos del navegador, si este no existe, la propiedad se hereda naturalmente, adoptando el valor de inherit.
+* unset : Este valor reestablece la propiedad a su valor natural, esto es: si la propiedad se hereda de forma natural entonces actuará como inherit, sino, actuará como initial.
