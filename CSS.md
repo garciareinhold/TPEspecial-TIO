@@ -118,7 +118,8 @@ Las Reglas CSS son los bloques principales de un documento de estilos — el blo
   <p>What color do you like?</p>
   <div>I like blue.</div>
   <p>I prefer red!</p>
-  Una sencilla hoja de estilos:
+
+  #### Una sencilla hoja de estilos:
 
   /* All p elements are red */
   p {
@@ -129,6 +130,11 @@ Las Reglas CSS son los bloques principales de un documento de estilos — el blo
   div {
     color: blue;
   }
+  
+
+  #### Obteniendo el siguiente resultado:
+
+  ![Selectores de tipos](/images/css-syntax-9.png "Selectores de elementos")
 
   #### Selectores de clases
 
