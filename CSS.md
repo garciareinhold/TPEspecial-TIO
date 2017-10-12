@@ -160,6 +160,8 @@ Las Reglas CSS son los bloques principales de un documento de estilos — el blo
     text-decoration: line-through;
   }
 
+  ![Selectores de clases](/images/css-syntax-10.png "CSS Sintax")
+
   #### Selectores ID
 
   El selector ID está formdo por una almohadilla (#), seguida del nombre ID de determinado elemento. Cualquier elemento puede tener un único nombre ID fijado con el atributo id. Podemos usar cualquier nombre de nuestra elección para el ID. Es la forma más efectiva de selecionar un solo elemento.
