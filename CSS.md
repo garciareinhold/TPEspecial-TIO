@@ -22,6 +22,8 @@ Las declaraciones están agrupadas por bloques, en los que el conjunto de declar
 
 ![Alternative Text!](/images/css-syntax-2.png )
 
+##Segunda Parte
+
 ### Selectores y reglas CSS
 
 Pero, en este rompe cabezas falta una pieza — y es aprender a identificar los elementos a los que afectará nuestro bloque declarativo. Esto lo conseguiremos añadiendo a cada bloque declarativo un prefijo a modo de selector — un módulo que identificará a ciertos elementos de nuestra página. Las declaraciones asociadas se aplicarán solo a estos elementos. El selector más el bloque declarativo se llama regla o regla-conjunto.
