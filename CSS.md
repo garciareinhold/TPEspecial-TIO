@@ -22,7 +22,7 @@ Las declaraciones están agrupadas por bloques, en los que el conjunto de declar
 
 ![Alternative Text!](/images/css-syntax-2.png )
 
-##Segunda Parte
+## Segunda Parte
 
 ### Selectores y reglas CSS
 
