@@ -71,3 +71,433 @@ Las Reglas CSS son los bloques principales de un documento de estilos — el blo
   Algunas propiedades como: font, background, padding, border, y margin se llaman propiedades abreviadas — permiten establecer varios valores a la vez en una sola línea, ahorrando tiempo y haciendo el código más limpio.
 
   Ejemplo: padding: 10px 15px 15px 5px;
+
+  #### Selectores en CSS
+
+  En CSS, los selectores se usan para elegir los elementos HTML que queremos estilizar de nuestra web. Disponemos de gran variedad de selectores CSS, que proporcionan mucha precisión para seleccionar el elemento deseado. En los siguientes artículos veremos los distintos tipos con más detalle y su funcionamiento.
+
+  #### Selectores básicos
+
+  En el último artículo vimos Sintaxis y terminología CSS. Resumiendo, los selectores forman parte de las reglas CSS y van justo antes de los bloques declarativos.
+
+  ![Muestra selectores](/images/css-sintax-5.png "CSS Sintax")
+
+  #### Tipos de selectores
+  Podemos dividir los selectores en las siguientes categorías:
+
+  * **Selectores simples:** Seleccionan los elementos por el nombre del tipo de elemento, class, o su id.
+  * **Selectores de atributos:** Seleccionan los elementos por los valores de sus atributos.
+  * **Pseudo-clases:** Seleccionan los elementos por el estado en que se encuentran, cómo haber aparecido al pasar el ratón, o el tic deshabilitado o seleccionado, o por ser el primer hijo de su padre en el árbol DOM.
+  * **Pseudo-elementos:** Selecciona los elementos por su situación en relación a otro elemento, por ejemplo: la primera palabra de cada párrafo, o el contenido que se encuentra justo después de un elemento.
+  * **Combinaciones:** No son en sí mismos selectores, sino formas de combinar dos o más selectores de forma práctica para una selección especial. Por ejemplo, se pueden seleccionar párrafos que sean descendientes de divs, o párrafos situados justo después de títulos.
+  * **Selectores múltiples:** Tampoco son selectores en sí mismos; podemos agrupar múltiples selectores en la misma regla CSS separados por comas, para aplicarlos a una de las declaraciones o a todos los elementos seleccionados por estos selectores.
+
+  #### Selectores simples
+
+  En nuestro primer artículo sobre selectores estudiaremos los selectores "simples", así llamados porque referencian directamente a uno o más elementos de un documento en función del tipo de elemento(o su class o id).
+
+  #### Selector de elementos (selector de tipos)
+
+  Este selector hacer referencia directamente a un tipo de elemento HTML. Es la manera más sencilla para hacer referencia a todos los elementos de un mismo tipo. Veamos el ejemplo:
+
+  * **Dado el siguiente código HTML:**
+
+  <p>What color do you like?</p>
+  <div>I like blue.</div>
+  <p>I prefer red!</p>
+  Una sencilla hoja de estilos:
+
+  /* All p elements are red */
+  p {
+    color: red;
+  }
+
+  /* All div elements are blue */
+  div {
+    color: blue;
+  }
+
+  #### Selectores de clases
+
+  El selector de clase se forma con un punto, '.', seguido de un nombre de clase. Un nombre de clase puede ser cualquier valor sin espacios usado dentro de un atributo HTML class. Podemos elegir el nombre que deseemos para la clase. Es conveniente saber que en un mismo documento varios elementos pueden compartir el mismo valor de clase y que un elemento puede tener varios nombres de clases separados por un espacio en blanco. Veamos un rápido ejemplo:
+
+  * **Sea el siguiente código HTML:**
+
+  <ul>
+    <li class="first done">Create an HTML document</li>
+    <li class="second done">Create a CSS style sheet</li>
+    <li class="third">Link them all together</li>
+  </ul>
+  
+  * **Y un sencillo documento de estilos:**
+
+  /* The element with the class "first" is bolded */
+  .first {
+    font-weight: bold;
+  }
+
+  /* All the elements with the class "done" are strike through */
+  .done {
+    text-decoration: line-through;
+  }
+
+  #### Selectores ID
+
+  El selector ID está formdo por una almohadilla (#), seguida del nombre ID de determinado elemento. Cualquier elemento puede tener un único nombre ID fijado con el atributo id. Podemos usar cualquier nombre de nuestra elección para el ID. Es la forma más efectiva de selecionar un solo elemento.
+
+  Important: El nombre ID debe ser único en el documento. No podemo saber que sucedera con IDs duplicados, en algunos navegadores solo contará la primera ocurrencia, las demás serán ignoradas.
+
+  * **Veamos un rápido ejemplo — dado el código HTML:**
+
+  <p id="polite"> — "Good morning."</p>
+  <p id="rude"> — "Go away!"</p>
+  Y un sencillo documento de estilos:
+
+  #polite {
+    font-family: cursive;
+  }
+
+  #rude {
+    font-family: monospace;
+    text-transform: uppercase;
+  }
+
+  #### Selector Universal
+
+  El selector universal (*) es el comodín. Nos permite seleccionar todos los elementos de una página, se suele usar en combinación con otros selectores (ver Combinators más adelante).
+
+  Importante: Cuidado al utilizar el selector universal. Al afectar a todos los elementos, usarlo en grandes páginas web grandes puede afectar al rendimiento, ralentizando el tiempo de carga de las páginas más de lo esperado. No tendremos necesidad de usarlo muy a menudo.
+
+   * **Ahora como ejemplo; dado un código HTML:**
+
+  <div>
+    <p>I think the containing box just needed
+    a <strong>border</strong> or <em>something</em>,
+    but this is getting <strong>out of hand</strong>!</p>
+  </div>
+  
+  * **Y su correspondiente hoja de estilos:**
+
+  * {
+    padding: 5px;
+    border: 1px solid black;
+    background: rgba(255,0,0,0.25)
+  }
+
+  #### Selectores de atributos
+   
+  Los selectores de atributos realiza la selección de los elementos afectados por la declaración en función de los attributes y sus valores. Su sintaxis consiste en la inclusión del nombre del atributo entre corchetes seguido opcionalmente de la condición respecto del valor del atributo. Los selectores de atributos se dividen en dos tipos dependiendo de la forma en que seleccionan los valores del atributo: Selectores de atributo de presencia y valor y selectores de atributo de valor textual.
+
+  * **Selectores de presencia y valor**
+
+  Estos selectores de atributos afectarán a los elementos cuyo valor coincida exactamente con el valor del atributo especificado:
+
+  [attr] : Este selector 'seleccionará' todos los elementos que contengan el atributo attr, sin importar el valor que tenga.
+  [attr=val] : Este, seleccionará los elementos con el atributo attr, pero solo aquello cuyo valor coincida con val.
+  [attr~=val]: Este selector afectará a los elementos con el atributo attr, pero solo si el valor val está contenido en la lista de valores (separados por espacios) incluidos en el valor de attr, por ejemplo una de las clases contenida en una lista de clases (separadas por espacios).
+  Veamos como ejemplo el siguiente fragmento de código HTML:
+
+  Ingredients for my recipe: <i lang="fr-FR">Poulet basquaise</i>
+  <ul>
+    <li data-quantity="1kg" data-vegetable>Tomatoes</li>
+    <li data-quantity="3" data-vegetable>Onions</li>
+    <li data-quantity="3" data-vegetable>Garlic</li>
+    <li data-quantity="700g" data-vegetable="not spicy like chili">Red pepper</li>
+    <li data-quantity="2kg" data-meat>Chicken</li>
+    <li data-quantity="optional 150g" data-meat>Bacon bits</li>
+    <li data-quantity="optional 10ml" data-vegetable="liquid">Olive oil</li>
+    <li data-quantity="25cl" data-vegetable="liquid">White wine</li>
+  </ul>
+  Y un sencillo documento de estilos CSS:
+
+  /* All elements with the attribute "data-vegetable"
+     are given green text */
+  [data-vegetable] {
+    color: green;
+  }
+
+  /* All elements with the attribute "data-vegetable"
+     with the exact value "liquid" are given a golden
+     background color */
+  [data-vegetable="liquid"] {
+    background-color: goldenrod;
+  }
+
+  /* All elements with the attribute "data-vegetable",
+     containing the value "spicy", even among others,
+     are given a red text color */
+  [data-vegetable~="spicy"] {
+    color: red;
+  }
+
+  * **Selector de atributos por valor textual**
+
+  También conocidos como "RegExp-like selectors", pues proporcionan una forma de selección similar a las expresiones normales regular expression (aunque siendo estrictos, estos selectores no son verdaderas expresiones normales):
+
+  [attr|=val] : Este selector elegirá todos los elementos con el atributo attr cuyo valor sea exactamente val o empieza por val- (nota: el guion no es un error, se usa para manejar códigos de lenguaje de programación).
+
+  [attr^=val] : Seleccionará todos los elementos cuyo atributo attr comienza por el valor val.
+  [attr$=val] : Este selector elegirá todos los elementos cuyo atributo attr termina por el valor val.
+  [attr*=val] : Este seleccionará todos los elementos cuyo atributo attr contiene la cadena val (al contrario que [attr~=val], este selector no considera los espacios como separador de valores sino como parte del valor del atributo).
+  Continuemos con el ejemplo previo y añadámosle las siguientes reglas CSS:
+
+  /* Classic usage for language selection */
+  [lang|=fr] {
+    font-weight: bold;
+  }
+
+  /* All elements with the attribute "data-quantity", for which
+     the value starts with "optional" */
+  [data-quantity^="optional"] {
+    opacity: 0.5;
+  }
+
+  /* All elements with the attribute "data-quantity", for which
+     the value ends with "kg" */
+  [data-quantity$="kg"] {
+    font-weight: bold;
+  }
+
+  /* All elements with the attribute "data-vegetable" containing
+     the value "not spicy" are turned back to green */
+  [data-vegetable*="not spicy"] {
+    color: green;
+  }
+
+  #### Pseudo-clases y pseudo-elementos
+
+  Veremos los pseudo-selectores — llamados así por no seleccionar elementos, sino ciertas partes de estos o solo bajo determinadas circunstancias. Hay de dos tipos: pseudo-clases y pseudo-elementos.
+
+  * **Pseudo-clases**
+
+  Una pseudo-clase CSS consta de una clave precedida de dos puntos (:) que añadiremos al final del selector para indicar que daremos estilo a los elementos seleccionados solo cuando estos se encuentren en un estado determinado. Por ejemplo podríamos querer dar estilo a un elemento cuando este se muestre al pasarle el puntero del ratón, o una caja de selección al estar habilitada o deshabilitada o cuando un elemento es hijo directo de su padre en el árbol DOM.
+
+    :active
+    :any
+    :checked
+    :default
+    :dir()
+    :disabled
+    :empty
+    :enabled
+    :first
+    :first-child
+    :first-of-type
+    :fullscreen
+    :focus
+    :hover
+    :indeterminate
+    :in-range
+    :invalid
+    :lang()
+    :last-child
+    :last-of-type
+    :left
+    :link
+    :not()
+    :nth-child()
+    :nth-last-child()
+    :nth-last-of-type()
+    :nth-of-type()
+    :only-child
+    :only-of-type
+    :optional
+    :out-of-range
+    :read-only
+    :read-write
+    :required
+    :right
+    :root
+    :scope
+    :target
+    :valid
+    :visited
+  No profundizaremos en cada una de las pseudo-clases — no es objetivo del Area de Aprendizaje presentarlas todas exhaustivamente, y se irán viendo con más detalle a lo largo del curso en el momento oportuno.
+
+  * **Ejemplo de pseudo-clase**
+  Por ahora, veamos un ejemplo de cómo usarlas. Primero, un fragmento de HTML:
+
+  <a href="https://developer.mozilla.org/" target="_blank">Mozilla Developer Network</a>
+  
+  * **Y las reglas CSS:**
+
+  /* These styles will style our link
+     in all states */
+  a {
+    color: blue;
+    font-weight: bold;
+  }
+
+  /* We want visited links to be the same color
+     as non visited links */
+  a:visited {
+    color: blue;
+  }
+
+  /* We highlight the link when it is
+     hovered (mouse), activated
+     or focused (keyboard) */
+  a:hover,
+  a:active,
+  a:focus {
+    color: darkred;
+    text-decoration: none;
+  }
+
+  * **Pseudo-elementos**
+
+  Los pseudo-elementos son parecidos a las pseudo-clases, con alguna diferencia. Estos son claves — ahora precedidas por (::) — que se añaden al final del selector para elegir cierta parte de un elemento.
+
+    ::after
+    ::before
+    ::first-letter
+    ::first-line
+    ::selection
+    ::backdrop
+  Todos disponen de comportamientos específicos e interesantes características que escapan a nuestros objetivos de aprendizaje por el momento.
+
+  * **Ejemplo de pseudo-elemento**
+  Mostramos a continuación un ejemplo sencillo de CSS que selecciona los espacios situados justo después de todos los enlaces absolutos y en su lugar añade una flecha:
+
+  <ul>
+    <li><a href="https://developer.mozilla.org/en-US/docs/Glossary/CSS">CSS</a> defined in the MDN glossary.</li>
+    <li><a href="https://developer.mozilla.org/en-US/docs/Glossary/HTML">HTML</a> defined in the MDN glossary.</li>
+  </ul>
+
+   * **Añadamos ahora la regla CSS:**
+
+  /* All elements with an attribute "href", which values
+     start with "http", will be added an arrow after its
+     content (to indicate it's an external link) */
+  [href^=http]::after {
+    content: '⤴';
+  }
+
+  #### Combinaciones y selectores múltiples
+
+  * **Combinaciones**
+
+  El uso de un selector cada vez puede ser útil, pero ineficiente en algunas situaciones. Los selectores CSS pueden ser más prácticos cuando los combinamos para refinar las selecciones. En CSS tenemos varias maneras para seleccionar unos elementos respecto a su relación con otros. Estas relaciones se expresan mediante combinaciones de la siguiente forma (A y B representan cualquiera de los selectores vistos hasta ahora):
+
+  Combinación	Selecciona
+  A, B	Cualquier elemento seleccionado por A y/o B (ver Varios selectores en una regla, más adelante).
+  A B	Cualquier elemento seleccionado por B descendiente de un elemento seleccionado por A (o sea, un hijo, un hijo de otro hijo, etc.).
+  A > B	Cualquier elemento seleccionado por B y es hijo directo de un elemento seleccionado por A.
+  A + B	
+  Cualquier elemento seleccionado por B y es el siguiente hermano de un elemento seleccionado por A (o sea, el siguiente hijo del mismo padre).
+
+  A ~ B	Cualquier elemento seleccionado por B y es uno de los siguientes hermanos del elemento seleccionado por A (uno de los siguientes hermanos del mismo padre).
+  Ejemplo de combinaciones
+  Veamos un ejemplo de todo esto actuando a la vez:
+
+<table lang="en-US" class="with-currency">
+<thead>
+    <tr>
+    <th scope="col">Product</th>
+    <th scope="col">Qty.</th>
+    <th scope="col">Price</th>
+    </tr>
+</thead>
+<tfoot>
+    <tr>
+    <th colspan="2" scope="row">Total:</th>
+    <td>148.55</td>
+    </tr>
+</tfoot>
+<tbody>
+    <tr>
+    <td>Lawnchair</td>
+    <td>1</td>
+    <td>137.00</td>
+    </tr>
+    <tr>
+    <td>Marshmallow rice bar</td>
+    <td>2</td>
+    <td>1.10</td>
+    </tr>
+    <tr>
+    <td>Book</td>
+    <td>1</td>
+    <td>10.45</td>
+    </tr>
+</tbody>
+</table>
+  Y utilicemos la siguiente hoja de estilos:
+
+  /* Basic table setup */
+  table {
+    font: 1em sans-serif;
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+  /* All <td>s within a <table> and all <th>s within a <table>
+    Comma is not a combinator, it just allows you to target
+    several selectors with the same CSS ruleset */
+  table td, table th {
+    border : 1px solid black;
+    padding: 0.5em 0.5em 0.4em;
+  }
+
+    /* All <th>s within <thead>s that are within <table>s */
+    table thead th {
+    color: white;
+    background: black;
+    }
+
+    /* All <td>s preceded by another <td>,
+    within a <tbody>, within a <table> */
+    table tbody td + td {
+    text-align: center;
+    }
+
+    /* All <td>s that are a last child,
+    within a <tbody>, within a <table> */
+    table tbody td:last-child {
+    text-align: right
+    }
+
+    /* All <th>s, within a <tfoot>s, within a <table> */
+    table tfoot th {
+    text-align: right;
+    border-top-width: 5px;
+    border-left: none;
+    border-bottom: none;
+    }
+
+    /* All <td>s preceded by a <th>, within a <table> */
+    table th + td {
+    text-align: right;
+    border-top-width: 5px;
+    color: white;
+    background: black;
+    }
+
+    /* All pseudo-elements "before" <td>s that are a last child,
+    appearing within elements with a class of "with-currency" that
+    also have an attribute "lang" with the value "en-US" */
+    .with-currency[lang="en-US"] td:last-child::before {
+    content: '$';
+    }
+
+    /* All pseudo-elements "after" <td>s that are a last child,
+    appearing within elements with the class "with-currency" that
+    also have an attribute "lang" with the value "fr" */
+    .with-currency[lang="fr"] td:last-child::after {
+    content: ' €';
+    }
+
+   #### Varios selectores en una regla
+
+  Hemos ya visto varios ejemplos, pero vamos a dar un par de ejemplos para mayor claridad. Se pueden escribir varios selectores separados por comas para aplicar la misma regla a varios elementos seleccionados a la vez. Ej.:
+
+  p, li {
+    font-size: 1.6em;
+  }
+  o también:
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: helvetica, 'sans serif';
+  }
+
+ 
