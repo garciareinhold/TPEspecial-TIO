@@ -420,7 +420,7 @@ Las Reglas CSS son los bloques principales de un documento de estilos — el blo
 
   El uso de un selector cada vez puede ser útil, pero ineficiente en algunas situaciones. Los selectores CSS pueden ser más prácticos cuando los combinamos para refinar las selecciones. En CSS tenemos varias maneras para seleccionar unos elementos respecto a su relación con otros. Estas relaciones se expresan mediante combinaciones de la siguiente forma (A y B representan cualquiera de los selectores vistos hasta ahora):
 
-  Combinación	Selecciona
+  #### Combinación	Selecciona
   A, B	Cualquier elemento seleccionado por A y/o B (ver Varios selectores en una regla, más adelante).
   A B	Cualquier elemento seleccionado por B descendiente de un elemento seleccionado por A (o sea, un hijo, un hijo de otro hijo, etc.).
   A > B	Cualquier elemento seleccionado por B y es hijo directo de un elemento seleccionado por A.
@@ -634,7 +634,7 @@ Las Reglas CSS son los bloques principales de un documento de estilos — el blo
   * initial : Este valor establece el valor de la propiedad de un elemento seleccionado en el valor por defecto que establece la hoja de estilos del navegador, si este no existe, la propiedad se hereda naturalmente, adoptando el valor de inherit.
   * unset : Este valor reestablece la propiedad a su valor natural, esto es: si la propiedad se hereda de forma natural entonces actuará como inherit, sino, actuará como initial.
 
-  El valor inherit es el más interesante — nos permite, de forma explícita, hacer que un elemento herede de su padre el valor de una propiedad.
+  #### El valor inherit es el más interesante — nos permite, de forma explícita, hacer que un elemento herede de su padre el valor de una propiedad.
 
   #### Echemos un vistazo a un ejemplo. Primero, como siempre, el HTML:
 
