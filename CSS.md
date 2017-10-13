@@ -701,3 +701,62 @@ El margen envuelve la caja CSS, y sostiene a otras cajas del diseño. Se comport
 
 #### Los márgenes tienen un comportamiento peculiar llamado margin collapsing: Cuando dos cajas se toca, la distancia entre ellas es el valor del margen más grande, y no la suma de ambos.
 
+  ### Manipulación de cajas avanzada
+
+  Además de establecer el alto, ancho, borde, padding y margen de las cajas, hay otras propiedades disponibles para modificar el comportamiento de estas. Esta sección tratará estas otras propiedades.
+
+  Desbordamiento
+  Al establecer el ancho de una caja con valores absolutos (p.ej. ancho/alto en pixels), el contenido puede no encajar con el tamaño permitido, en cuyo caso el contenido desborda la caja. Para controlar lo que ocurre en estos casos, podemos usar la propiedad overflow. Puede tomar varios valores, pero los más usuales son:
+
+  auto: Si hay demasiado contenido, el desbordamiento del contenido es ocultado apareciendo las barras de desplazamiento para permitir al usuario desplazarse para ver todo el contenido
+  hidden: Si hay demasiado contenido, el desbordamiento es escondido.
+  visible: Si hay demasiado contendido, el desbordamiento se muestra fuera de la caja (este es normalmente el comportamiento por defecto).
+  Veamos un sencillo ejemplo para comprobar el funcionamiento:
+
+  Primero, el HTML:
+
+  <p class="autoscroll">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Mauris tempus turpis id ante mollis dignissim. Nam sed
+    dolor non tortor lacinia lobortis id dapibus nunc. Praesent
+    iaculis tincidunt augue. Integer efficitur sem eget risus
+    cursus, ornare venenatis augue hendrerit. Praesent non elit
+    metus. Morbi vel sodales ligula.
+  </p>
+
+  <p class="clipped">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Mauris tempus turpis id ante mollis dignissim. Nam sed
+    dolor non tortor lacinia lobortis id dapibus nunc. Praesent
+    iaculis tincidunt augue. Integer efficitur sem eget risus
+    cursus, ornare venenatis augue hendrerit. Praesent non elit
+    metus. Morbi vel sodales ligula.
+  </p>
+
+  <p class="default">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Mauris tempus turpis id ante mollis dignissim. Nam sed
+    dolor non tortor lacinia lobortis id dapibus nunc. Praesent
+    iaculis tincidunt augue. Integer efficitur sem eget risus
+    cursus, ornare venenatis augue hendrerit. Praesent non elit
+    metus. Morbi vel sodales ligula.
+  </p>
+  Y el CSS:
+
+  p {
+    width  : 400px;
+    height : 2.5em;
+    padding: 1em 1em 1em 1em;
+    border : 1px solid black;
+  }
+
+  .autoscroll { overflow: auto;    }
+  .clipped    { overflow: hidden;  }
+  .default    { overflow: visible; }
+
+  El código anterior produce el siguiente resultado:
+
+  ![Modelo de cajas](/images/css-syntax-20.png "CSS Sintax")
+
+
+
