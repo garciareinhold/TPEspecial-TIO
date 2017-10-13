@@ -26,7 +26,7 @@ Las declaraciones están agrupadas por bloques, en los que el conjunto de declar
 
 ### Selectores y reglas CSS
 
-Pero, en este rompe cabezas falta una pieza — y es aprender a identificar los elementos a los que afectará nuestro bloque declarativo. Esto lo conseguiremos añadiendo a cada bloque declarativo un prefijo a modo de selector — un módulo que identificará a ciertos elementos de nuestra página. Las declaraciones asociadas se aplicarán solo a estos elementos. El selector más el bloque declarativo se llama regla o regla-conjunto.
+En este rompe cabezas falta una pieza — y es aprender a identificar los elementos a los que afectará nuestro bloque declarativo. Esto lo conseguiremos añadiendo a cada bloque declarativo un prefijo a modo de selector — un módulo que identificará a ciertos elementos de nuestra página. Las declaraciones asociadas se aplicarán solo a estos elementos. El selector más el bloque declarativo se llama regla o regla-conjunto.
 
 ![Alternative Text!](/images/css-syntax-3.png  )
 
@@ -666,3 +666,37 @@ Las Reglas CSS son los bloques principales de un documento de estilos — el blo
   Resultado:
 
   ![Herencia](/images/css-syntax-18.png "CSS Sintax")
+
+  ## Cuarta parte
+
+  ##### En la tercera parte hemos visto conceptos como el de cascada, fundamental en CSS. Vimos la informacion en 3 aspectos importancia, especificidad y orden del codigo. Tambien como lo menciona su definicion la ultima pieza para tener la informacion completa, el concepto 
+  ##### de herencia. En esta cuarta parte vamos a indagar en el modelo de cajas, una parte importantisima tambien para trabajar con CSS. Y en esta guia va a ser la ultima. Sin duda esto es solo una introduccion a buenas practicas en CSS y en el futuro se pueden profundizar varios aspectos.   
+  
+  ### El modelo de cajas
+  
+  El modelo de cajas es la base del diseño web — cada elemento se representa como una caja rectangular, con su contenido, padding (espacio interior), borde y margen construidos uno sobre otro como las capas de una cebolla. El navegador, para interpretar el diseño de una página, procesa los estilos que se aplicarán a cada caja, el tamaño de las capas de la cebolla y la ubicación de unas cajas con respecto a otras. Antes de comprender cómo crear diseños CSS, debemos entender el modelo de cajas — que es lo que veremos en esta parte.
+
+  #### Propiedades de las cajas
+
+  Cualquier elemento contenido en un documento tiene la estructura de una caja rectangular dentro del formato del documento, el tamaño y las capas que serán retocadas usando las propiedades CSS. Las propiedades importantes son:
+  
+  ![Modelo de cajas](/images/css-syntax-19.png "CSS Sintax")
+  
+  #### width y height
+  Las propiedades width y height establecen el ancho y alto de la caja de contenido, que es el área donde se muestra el contenido de la caja — este contenido comprende tanto el texto incluido en la caja como otras cajas representadas por elementos anidados.
+
+  #### Hay otras propiedades que permiten el manejo refinado del tamaño de la caja de contenido — para limitar los tamaños. Para ello se usan las propiedades min-width, max-width, min-height, y max-height.
+  
+  #### padding
+  Padding hace referencia al margen interior de la caja CSS — entre el límite exterior de la caja del contenido y el límite interior del borde. El tamaño de esta capa puede configurarse en sus cuatro lados a la vez con la propiedad abreviada padding, o cada lado por separado con las propiedades: padding-top, padding-right, padding-bottom y padding-left.
+
+  #### border
+  El borde de una caja CSS descansa entre el límite exterior del padding y el límite interior del margen. Por defecto tiene un tamaño de 0 — invisible — pero podemos cambiar su grosor, estilo y color para hacerlo visible. La propiedad abreviada de border permite establecer los cuatro lados a la vez, por ejemplo: border: 1px solid black. Pero también se puede dividir en varias propiedades extendidas para su uso en necesidades concretas de estilo:
+  border-top, border-right, border-bottom, border-left: Establecen el grosor, estilo y color de cada lado del borde.
+  border-width, border-style, border-color: Establecen únicamente el grosor, el estilo y el color por separado, pero para los cuatro lados del borde al mismo tiempo.
+  Podemos también establecer cada propiedad por separado para cada lado individualmente, usando border-top-width, border-top-style, border-top-color, etc. 
+  margin
+  El margen envuelve la caja CSS, y sostiene a otras cajas del diseño. Se comporta como padding; la propiedad abreviada es margin y las propiedades individuales son margin-top, margin-right, margin-bottom, y margin-left.
+
+  #### Los márgenes tienen un comportamiento peculiar llamado margin collapsing: Cuando dos cajas se toca, la distancia entre ellas es el valor del margen más grande, y no la suma de ambos.
+
