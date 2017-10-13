@@ -797,5 +797,58 @@ El margen envuelve la caja CSS, y sostiene a otras cajas del diseño. Se comport
 
   #### Cuidado al usar la propiedad outline. Se usa en ocasiones por razones de accesibilidad, para remarcar la parte activa de una página web como los links cuando son pulsados. Si usamos los contornos debemos asegurarnos de que su formato no se parezca a los links para no confundir a los usuarios.
 
+  ### Tipos de cajas CSS
 
+  Todo lo dicho hasta ahora se refiere a las cajas que representan elementos de bloque. No obstante, CSS tiene otros tipos de cajas que se comportan diferente. El tipo de caja aplicada a un elemento se controla por la propiedad display. Hay muchos valores diferentes para display, pero ahora nos centraremos en los tres más comunes: block, inline, y inline-block.
+
+  Una caja block se caracteriza por ser una caja apilada sobre otras cajas (p.ej. el contenido anterior y posterior a la caja aparece en líneas separadas), y puede tener asignada un ancho y un alto. Todo el modelo de cajas descrito anteriormente se refiere a las cajas bloque.
+  Una caja inline (de línea) es lo contrario de la caja bloque: Se aplica a los documentos de texto (p.ej. aparecerá en la misma línea rodeando al texto y a otros elementos en la línea, y su contenido avanzará con el texto, como la separación entre las líneas de un párrafo). El ancho y alto definidos no afectan a este tipo de cajas inline; cualquier padding, margen y borde aplicado a las cajas inline modificará la ubicación del texto alrededor, pero no la posición de las cajas (de bloque) circundantes.
+  Una caja inline-block es algo intermedio entre las dos primeras: fluye con el texto sin crear líneas de ruptura delante y detrás como las cajas inline, pero puede limitarse estableciendo alto y ancho manteniendo así la integridad de bloque como las cajas block — no se partirá entre las líneas del párrafo (en el anterior ejemplo la caja inline va encima de la 2da línea de texto, al no haber suficiente espacio para ella en la primera línea, y esta no parte las dos líneas).
+  
+  #### Por defecto, los elementos de bloque tiene definido display: block; y los elementos de línea: display: inline.
+
+  Esto puede sonar un poco confuso por el momento; Veamos un sencillo ejemplo:.
+
+  El HTML:
+
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    <span class="inline">Mauris tempus turpis id ante mollis dignissim.</span>
+    Nam sed dolor non tortor lacinia lobortis id dapibus nunc.
+  </p>
+
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    <span class="block">Mauris tempus turpis id ante mollis dignissim.</span>
+    Nam sed dolor non tortor lacinia lobortis id dapibus nunc.
+  </p>
+
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    <span class="inline-block">Mauris tempus turpis id ante mollis dignissim.</span>
+    Nam sed dolor non tortor lacinia lobortis id dapibus nunc.
+  </p>
+
+  El CSS:
+
+  p {
+    padding : 1em;
+    border  : 1px solid black;
+  }
+
+  span {
+    padding : 0.5em;
+    border  : 1px solid green;
+
+    /* That makes the box visible, regardless of its type */
+    background-color: yellow;
+  }
+
+  .inline       { display: inline;       }
+  .block        { display: block;        }
+  .inline-block { display: inline-block; }
+
+  El código anterior produce el siguiente resultado, que ilustra el efecto de los tipos de caja anteriores:
+
+  ![Modelo de cajas](/images/css-syntax-22.png "CSS Sintax")
 
