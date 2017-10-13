@@ -705,7 +705,7 @@ El margen envuelve la caja CSS, y sostiene a otras cajas del diseño. Se comport
 
   Además de establecer el alto, ancho, borde, padding y margen de las cajas, hay otras propiedades disponibles para modificar el comportamiento de estas. Esta sección tratará estas otras propiedades.
 
-  Desbordamiento
+  #####Desbordamiento
   Al establecer el ancho de una caja con valores absolutos (p.ej. ancho/alto en pixels), el contenido puede no encajar con el tamaño permitido, en cuyo caso el contenido desborda la caja. Para controlar lo que ocurre en estos casos, podemos usar la propiedad overflow. Puede tomar varios valores, pero los más usuales son:
 
   auto: Si hay demasiado contenido, el desbordamiento del contenido es ocultado apareciendo las barras de desplazamiento para permitir al usuario desplazarse para ver todo el contenido
@@ -791,7 +791,7 @@ El margen envuelve la caja CSS, y sostiene a otras cajas del diseño. Se comport
 
   ![Modelo de cajas](/images/css-syntax-21.png "CSS Sintax")
 
-  Contorno
+  ###Contorno
 
   Por último, el outline (contorno) de una caja es algo que se parece al borde pero que no forma parte de la caja. Se comporta como el borde pero se dibuja por encima de caja sin cambiar su tamaño (concretando, el contorno se dibuja por fuera de la caja del borde, dentro del área del margen).
 
