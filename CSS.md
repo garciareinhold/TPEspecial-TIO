@@ -183,6 +183,10 @@ Las Reglas CSS son los bloques principales de un documento de estilos — el blo
     text-transform: uppercase;
   }
 
+  #### Dara el siguiente resultado
+
+  ![Selectores de ID](/images/css-syntax-12.png "CSS Sintax")
+
   #### Selector Universal
 
   El selector universal (*) es el comodín. Nos permite seleccionar todos los elementos de una página, se suele usar en combinación con otros selectores (ver Combinators más adelante).
@@ -204,6 +208,10 @@ Las Reglas CSS son los bloques principales de un documento de estilos — el blo
     border: 1px solid black;
     background: rgba(255,0,0,0.25)
   }
+
+  #### Nos dara el siguiente resultado
+
+  ![Selector universal](/images/css-syntax-11.png "CSS Sintax")
 
   #### Selectores de atributos
 
