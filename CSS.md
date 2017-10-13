@@ -758,5 +758,44 @@ El margen envuelve la caja CSS, y sostiene a otras cajas del diseño. Se comport
 
   ![Modelo de cajas](/images/css-syntax-20.png "CSS Sintax")
 
+  ### Límite del fondo
+
+  Los fondos de las cajas están hechos de colores e imágenes, apiladas unas sobre otras (background-color, background-image.) Se aplican al fondo de la misma. Por defecto los fondos se extienden hasta el límite exterior del borde. Suele ser suficiente, pero en ocasiones puede molestar (¿Qué pasa si tenemos una imagen de fondo que queremos que solo llegue hasta el límite del contenido?) Este comportamiento puede ajustarse mediante la propiedad background-clip de la caja.
+
+  Veamos el funcionamiento con un ejemplo. Primero el HTML:
+
+  <div class="default"></div>
+  <div class="padding-box"></div>
+  <div class="content-box"></div>
+
+  Ahora el CSS:
+
+  div {
+    width  : 60px;
+    height : 60px;
+    border : 20px solid rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    margin : 20px 0;
+
+    background-size    : 140px;
+    background-position: center;
+    background-image   : url('https://mdn.mozillademos.org/files/11947/ff-logo.png');
+    background-color   : gold;
+  }
+
+  .default     { background-clip: border-box;  }
+  .padding-box { background-clip: padding-box; }
+  .content-box { background-clip: content-box; }
+
+  El código anterior produce el siguiente resultado:
+
+  ![Modelo de cajas](/images/css-syntax-21.png "CSS Sintax")
+
+  Contorno
+
+  Por último, el outline (contorno) de una caja es algo que se parece al borde pero que no forma parte de la caja. Se comporta como el borde pero se dibuja por encima de caja sin cambiar su tamaño (concretando, el contorno se dibuja por fuera de la caja del borde, dentro del área del margen).
+
+  #### Cuidado al usar la propiedad outline. Se usa en ocasiones por razones de accesibilidad, para remarcar la parte activa de una página web como los links cuando son pulsados. Si usamos los contornos debemos asegurarnos de que su formato no se parezca a los links para no confundir a los usuarios.
+
 
 
