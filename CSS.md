@@ -633,3 +633,36 @@ Las Reglas CSS son los bloques principales de un documento de estilos — el blo
   * inherit : Este valor establece el valor de la propiedad de un elemento seleccionado en el mismo que su elemento padre.
   * initial : Este valor establece el valor de la propiedad de un elemento seleccionado en el valor por defecto que establece la hoja de estilos del navegador, si este no existe, la propiedad se hereda naturalmente, adoptando el valor de inherit.
   * unset : Este valor reestablece la propiedad a su valor natural, esto es: si la propiedad se hereda de forma natural entonces actuará como inherit, sino, actuará como initial.
+
+  El valor inherit es el más interesante — nos permite, de forma explícita, hacer que un elemento herede de su padre el valor de una propiedad.
+
+  #### Echemos un vistazo a un ejemplo. Primero, como siempre, el HTML:
+
+  <ul>
+    <li>Default <a href="#">link</a> color</li>
+    <li class="inherit">Inherit the <a href="#">link</a> color</li>
+    <li class="initial">Reset the <a href="#">link</a> color</li>
+    <li class="unset">Unset the <a href="#">link</a> color</li>
+  </ul>
+
+  Y el CSS para dar estilo:
+
+  body {
+    color: green;
+  }
+
+  .inherit a {
+    color: inherit;
+  }
+
+  .initial a {
+    color: initial
+  }
+
+  .unset a {
+    color: unset;
+  }
+
+  Resultado:
+
+  ![Herencia](/images/css-syntax-18.png "CSS Sintax")
