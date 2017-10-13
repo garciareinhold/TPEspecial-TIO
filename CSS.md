@@ -1,4 +1,4 @@
-"# TPEspecial-TIO"
+"# Trabajo Práctico Especial para Tecnología de la información en las organizaciones"
 
 # Sintaxis en CSS
 
